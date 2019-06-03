@@ -16,6 +16,7 @@ enum unigo66_keycodes {
 #define LOWER   MO(_LOWER)
 #define RAISE   MO(_RAISE)
 #define LWR_BSP LT(_LOWER, KC_BSPC)     // Turn on _LOWER layer when held, Backspace when tapped
+#define LWR_SPC LT(_LOWER, KC_SPC)      // Turn on _LOWER layer when held, Space when tapped
 #define RSE_HOM LT(_RAISE, KC_HOME)     // Turn on _RAISE layer when held; Home when tapped
 #define RSE_END LT(_RAISE, KC_END)      // Turn on _RAISE layer when held; End when tapped
 #define MOU_SCL LT(_MOUSE, KC_SCLN)     // Turn on _MOUSE layer when held, ; when tapped
@@ -30,7 +31,7 @@ enum unigo66_keycodes {
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /*
      * ,--------------------------------------------------.           ,--------------------------------------------------.
-     * |   =    |   1  |   2  |   3  |   4  |   5  | Del  |           | Esc  |   6  |   7  |   8  |   9  |   0  |   -    |
+     * |  Esc   |   1  |   2  |   3  |   4  |   5  |  -   |           |  =   |   6  |   7  |   8  |   9  |   0  | Bkspace|
      * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
      * |  Tab   |   Q  |   W  |   E  |   R  |   T  | PgUp |           |  [   |   Y  |   U  |   I  |   O  |   P  |   \    |
      * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -42,18 +43,18 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
      *   `--------------------'                                                                   `--------------------'
      *                                        ,-------------.       ,-------------.
      *                                        |      |      |       |      | Home |
-     *                                        |Space |BckSpc|       |Enter |------|
+     *                                        |Space |Space |       |Enter |------|
      *                                        |      |      |       |      | End  |
      *                                        `-------------'       `-------------'
      */
     [_QWERTY] = LAYOUT(
-        KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_DEL,       KC_ESC,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
+        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_MINS,      KC_EQL,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_PGUP,      KC_LBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
         CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                           KC_H,    KC_J,    KC_K,    KC_L,    MOU_SCL, GUI_QUO,
         KC_LSFT, CTL_Z,   KC_X,    KC_C,    KC_V,    KC_B,    KC_PGDN,      KC_RBRC, KC_N,    KC_M,    KC_COMM, KC_DOT,  CTL_SLS, SFT_ENT,
         CTL_GRV, KC_LALT, KC_LGUI,                                                                              KC_RGUI, KC_RALT, KC_RCTL,
-                                                     KC_SPC,  LWR_BSP,      KC_ENT,  RSE_HOM,
-                                                     KC_SPC,  LWR_BSP,      KC_ENT,  RSE_END
+                                                     LWR_SPC, KC_SPC,       KC_ENT,  RSE_HOM,
+                                                     LWR_SPC, KC_SPC,       KC_ENT,  RSE_END
     ),
 
     /*
@@ -75,7 +76,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
      *                                        `-------------'       `-------------'
      */
     [_LOWER] = LAYOUT(
-        KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______,      _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+        KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_DEL,       KC_DEL,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
         _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, _______,      _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_F12,
         KC_CAPS, _______, KC_LEFT, KC_RGHT, KC_UP,   _______,                        _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, KC_DOWN, _______, _______,      _______, _______, _______, _______, _______, KC_UP,   _______,
